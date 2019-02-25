@@ -29,3 +29,7 @@ print("9: ", myList[:5])
 
 # Print everything from the 2nd to last item to the end
 print("10: ", myList[-2:])
+
+# Remove the item 'h'
+myList.remove("h")
+print("11: ", myList)
