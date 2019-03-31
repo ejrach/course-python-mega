@@ -2,7 +2,7 @@
 
 Application: Create Webmaps with Python and Folium
 
-Inputs: Volcanoes.csv, webmappingviafile.py
+Inputs: Volcanoes.csv, world.json, webmappingviafile.py
 Outputs: Map2.html
 
 Prerequisites:

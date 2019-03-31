@@ -24,13 +24,16 @@ def color_producer(elevation):
 # Set the zoom on a certain area. Coordinates can eb obtained by going to google maps and right clicking "What's here?"
 map = folium.Map(location=[38.58, -99.09], zoom_start=6, tiles="Mapbox Bright")
 
-# Set a feature groups
+# Set a feature group
 fg = folium.FeatureGroup(name="My Map")
 
 # The zip method allows you to iterate through two lists, side by side
 for lt, ln, el in zip(lat, lon, elev):
     fg.add_child(folium.CircleMarker(location=[lt, ln], radius = 6, popup=str(el)+" m", 
     fill_color=color_producer(el), color = 'grey', fill=True, fill_opacity=0.7))
+
+# Creates a GeoJson oject, add adds polygons. This json file could also contain lines as well
+fg.add_child(folium.GeoJson(data=(open('world.json','r', encoding='utf-8-sig').read())))
 
 map.add_child(fg)
 
