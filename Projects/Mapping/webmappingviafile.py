@@ -33,7 +33,13 @@ for lt, ln, el in zip(lat, lon, elev):
     fill_color=color_producer(el), color = 'grey', fill=True, fill_opacity=0.7))
 
 # Creates a GeoJson oject, add adds polygons. This json file could also contain lines as well
-fg.add_child(folium.GeoJson(data=(open('world.json','r', encoding='utf-8-sig').read())))
+data_json = open("world.json", 'r', encoding='utf-8-sig').read()
+
+# To understand how the population is obtained, ['properties']['POP2005'] is used 
+# to access the data.
+fg.add_child(folium.GeoJson(data=data_json, 
+style_function=lambda x: {'fillColor':'green' if x['properties']['POP2005'] < 10000000
+else 'orange' if 10000000 <= x['properties']['POP2005'] < 20000000 else 'red'}))
 
 map.add_child(fg)
 
