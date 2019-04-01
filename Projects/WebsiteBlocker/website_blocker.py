@@ -14,7 +14,7 @@ while True:
     if dt(dt.now().year,dt.now().month,dt.now().day,8) < dt.now() < dt(dt.now().year,dt.now().month,dt.now().day,16):
         print("Working Hours...")
 
-        # open the file for read and write
+        # open the file for read and append
         with open(hosts_temp,'r+') as file:
             content=file.read()
             for website in website_list:
@@ -25,7 +25,27 @@ while True:
                     file.write(redirect + " " + website + "\n")
 
     else:
+        # We are outside working hours. Now we want to delete the websites to allow access
         print("Fun hours...")
+        with open(hosts_temp,'r+') as file:
+            # read all of the file into content. When doing this, the pointer will be at the
+            # last character of the file.
+            content=file.readlines()
+
+            # this takes us back to the first position in the file. We're doing this
+            # because we want to insert the new file write (done below) so we can
+            # truncate the rest of the text.
+            file.seek(0)
+
+            # for each line in the content, starting with line 1
+            for line in content:
+                # If there a no websites in the line (which are in the website_list), then
+                # write the line. This writes a line of the file, but doesn't write the
+                # website to the file.
+                if not any(website in line for website in website_list):
+                    file.write(line)
+            
+            file.truncate()
+
      # Delay 5 seconds
-    
     time.sleep(5)
