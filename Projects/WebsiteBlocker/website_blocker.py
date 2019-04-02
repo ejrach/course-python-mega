@@ -1,7 +1,7 @@
 import time
 from datetime import datetime as dt     # creating namespace of "dt"
 
-#hosts_path="/private/etc/hosts"
+hosts_path="/private/etc/hosts"
 hosts_temp = "hosts"
 redirect="127.0.0.1"
 website_list=["gmail.com","www.cnn.com","cnn.com"]
@@ -15,7 +15,7 @@ while True:
         print("Working Hours...")
 
         # open the file for read and append
-        with open(hosts_temp,'r+') as file:
+        with open(hosts_path,'r+') as file:
             content=file.read()
             for website in website_list:
                 if website in content:
@@ -27,7 +27,7 @@ while True:
     else:
         # We are outside working hours. Now we want to delete the websites to allow access
         print("Fun hours...")
-        with open(hosts_temp,'r+') as file:
+        with open(hosts_path,'r+') as file:
             # read all of the file into content. When doing this, the pointer will be at the
             # last character of the file.
             content=file.readlines()
