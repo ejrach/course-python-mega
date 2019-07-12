@@ -1,6 +1,6 @@
 
 # importing the flask class object from the flask library
-from flask import Flask
+from flask import Flask, render_template
 
 # create variable where you will store your flask application. Instatiate the class object
 app = Flask(__name__)
@@ -10,11 +10,11 @@ app = Flask(__name__)
 # just return a string to the website.
 @app.route('/')
 def home():
-    return "Homepage content goes here!"
+    return render_template("home.html")
 
 @app.route('/about/')
 def about():
-    return "About page content goes here!"
+    return render_template("about.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
