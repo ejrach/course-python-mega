@@ -9,10 +9,12 @@ Outputs: webpage running on local host
 
 To run:
 1. Download the files
-2. In a terminal window, type:
+2. To Run, in a terminal window, type:
     $ python3 scrtipt1.py
-3, Go to web browser, type:
+3. Go to web browser, type:
     localhost:5000
+4. Load the appropriate web page by typing the URL, i.e.:
+    localhost:5000/about
 
 
 Description:
